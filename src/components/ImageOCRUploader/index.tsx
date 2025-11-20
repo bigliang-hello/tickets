@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { View, Button, Image } from '@tarojs/components'
+import { View, Button, Image, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { apiUpload } from '../../services/api'
+import { apiUpload } from '../../services/request'
+import styles from './index.module.scss'
 
 interface Props { onParsed: (data: any, raw: string[]) => void }
 
@@ -31,10 +32,21 @@ export default function ImageOCRUploader({ onParsed }: Props) {
   }
 
   return (
-    <View>
-      <Button onClick={pick}>选取截图</Button>
-      {!!img && <Image src={img} mode='widthFix' />}
-      <Button disabled={!img} loading={loading} onClick={recognize}>OCR 识别</Button>
+    <View className={styles['ocr-uploader']}>
+      <View className={styles['upload-box']} onClick={pick}>
+        {img ? (
+          <Image className={styles.preview} src={img} mode='widthFix' />
+        ) : (
+          <View className={styles.placeholder}>
+            <View className={styles['upload-icon']}>
+              <Text className={styles['icon-text']}>🖼️+</Text>
+            </View>
+            <Text className={styles['upload-desc']}>点击上传车票截图</Text>
+            <Text className={styles['upload-tip']}>支持JPG、 PNG格式</Text>
+          </View>
+        )}
+      </View>
+      <Button className={styles['ocr-primary']} disabled={!img} loading={loading} onClick={recognize}>识别信息</Button>
     </View>
   )
 }

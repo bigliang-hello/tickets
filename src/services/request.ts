@@ -1,5 +1,4 @@
 import Taro from '@tarojs/taro'
-import { refreshLogin } from './auth'
 
 const TOKEN_KEY = 'auth:token'
 const USER_KEY = 'auth:user'
@@ -19,9 +18,17 @@ function withBase(url: string) {
 }
 
 let refreshing: Promise<void> | null = null
+async function refreshLoginInternal() {
+  const { code } = await Taro.login()
+  const res = await Taro.request({ url: withBase('/api/auth/wechat/login'), method: 'POST', data: { code }, header: { 'Content-Type': 'application/json' } })
+  const data = res.data as any
+  if (res.statusCode >= 400 || !data?.token) throw new Error('login failed')
+  setToken(data.token)
+  setUser(data.user)
+}
 
 async function ensureAuth() {
-  if (!refreshing) refreshing = refreshLogin().finally(() => { refreshing = null })
+  if (!refreshing) refreshing = refreshLoginInternal().finally(() => { refreshing = null })
   return refreshing
 }
 

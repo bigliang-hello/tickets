@@ -1,0 +1,9 @@
+.ocr-uploader { }
+.upload-box { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 6px 16px rgba(78, 137, 255, 0.12); }
+.placeholder { border: 2px dashed #d9dde5; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 8px }
+.upload-icon { width: 48px; height: 48px; border-radius: 24px; background: #e6f0ff; display: flex; align-items: center; justify-content: center; color: #3b82f6 }
+.icon-text { font-size: 18px }
+.upload-desc { font-size: 14px; color: #0b2b53; font-weight: 600 }
+.upload-tip { font-size: 12px; color: #8aa1b8 }
+.preview { width: 100%; border-radius: 12px }
+.ocr-primary { margin-top: 12px; background: #2563eb; color: #fff; border-radius: 12px }

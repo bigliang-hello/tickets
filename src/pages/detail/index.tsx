@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { View, Button } from '@tarojs/components'
 import Taro, { useRouter } from '@tarojs/taro'
-import { getTickets, deleteTicket } from '../../services/storage'
+import { getTicketById, deleteTicket } from '../../services/storage'
 import TicketCard from '../../components/TicketCard'
 import { Ticket } from '../../types/ticket'
 
@@ -10,14 +10,15 @@ export default function Detail() {
   const [ticket, setTicket] = useState<Ticket | null>(null)
 
   useEffect(() => {
-    const list = getTickets()
-    const found = list.find(t => t.id === params.id)
-    setTicket(found || null)
+    (async () => {
+      const found = await getTicketById(params.id as string)
+      setTicket(found || null)
+    })()
   }, [params.id])
 
-  const remove = () => {
+  const remove = async () => {
     if (!ticket) return
-    deleteTicket(ticket.id)
+    await deleteTicket(ticket.id)
     Taro.showToast({ title: '已删除', icon: 'success' })
     Taro.navigateBack()
   }

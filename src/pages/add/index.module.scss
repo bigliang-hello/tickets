@@ -1,0 +1,17 @@
+.add-page { padding: 16px; background: linear-gradient(180deg, #f3f9ff 0%, #eef7ff 100%) }
+.tabs { display: flex; gap: 8px; margin-bottom: 12px; background: rgba(255,255,255,0.6); padding: 6px; border-radius: 20px }
+.tab { padding: 8px 14px; border-radius: 16px; color: #466a8f; font-size: 14px }
+.tab.active { background: linear-gradient(180deg, #4ea3ff 0%, #3b82f6 100%); color: #fff; box-shadow: 0 4px 12px rgba(62,127,255,0.3) }
+.login-row { margin-bottom: 12px }
+.login-btn { background: #fff; color: #3b82f6; border-radius: 12px }
+.card { background: #fff; border-radius: 16px; padding: 12px; box-shadow: 0 6px 16px rgba(78, 137, 255, 0.12); margin-bottom: 14px }
+.card-title { font-size: 14px; font-weight: 600; color: #0b2b53; margin-bottom: 8px }
+.form-card { background: #fff; border-radius: 16px; padding: 12px; box-shadow: 0 6px 16px rgba(78, 137, 255, 0.12); margin-bottom: 16px }
+.form-row { margin-bottom: 12px }
+.label { font-size: 12px; color: #8aa1b8; margin-bottom: 6px }
+.input { border-radius: 12px; background: #f5f7fb; padding: 10px }
+.textarea { border-radius: 12px; background: #f5f7fb; padding: 10px; min-height: 80px }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+.align .inline { display: flex; align-items: center; gap: 8px }
+.inline-btn { display: flex }
+.primary { background: #2563eb; color: #fff; border-radius: 12px }

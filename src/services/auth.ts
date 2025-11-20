@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { apiRequest, setToken, setUser } from './api'
+import { apiRequest, setToken, setUser } from './request'
 
 export async function wechatLogin(): Promise<void> {
   const { code } = await Taro.login()

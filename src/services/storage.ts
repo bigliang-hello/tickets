@@ -1,37 +1,30 @@
-import Taro from '@tarojs/taro'
 import { Ticket } from '../types/ticket'
+import { apiRequest } from './request'
 
-const KEY = 'tickets:data'
+export async function getTickets(): Promise<Ticket[]> {
+  const resp = await apiRequest<Ticket[]>({ url: '/api/tickets', method: 'GET' })
+  return resp
+}
 
-export function getTickets(): Ticket[] {
-  const data = Taro.getStorageSync(KEY)
-  if (!data) return []
+export async function getTicketById(id: string): Promise<Ticket | null> {
   try {
-    return JSON.parse(data)
+    const resp = await apiRequest<Ticket>({ url: `/api/tickets/${encodeURIComponent(id)}`, method: 'GET' })
+    return resp
   } catch {
-    return []
+    return null
   }
 }
 
-export function saveTicket(ticket: Ticket) {
-  const list = getTickets()
-  const exists = list.findIndex(t => t.id === ticket.id)
-  if (exists >= 0) list[exists] = ticket
-  else list.unshift(ticket)
-  Taro.setStorageSync(KEY, JSON.stringify(list))
+export async function saveTicket(ticket: Ticket): Promise<Ticket> {
+  const created = await apiRequest<Ticket>({ url: '/api/tickets', method: 'POST', data: ticket })
+  return created
 }
 
-export function updateTicket(id: string, patch: Partial<Ticket>) {
-  const list = getTickets()
-  const idx = list.findIndex(t => t.id === id)
-  if (idx >= 0) {
-    const merged: Ticket = { ...list[idx], ...patch, updatedAt: Date.now() }
-    list[idx] = merged
-    Taro.setStorageSync(KEY, JSON.stringify(list))
-  }
+export async function updateTicket(id: string, patch: Partial<Ticket>): Promise<Ticket> {
+  const updated = await apiRequest<Ticket>({ url: `/api/tickets/${encodeURIComponent(id)}`, method: 'PUT', data: patch })
+  return updated
 }
 
-export function deleteTicket(id: string) {
-  const list = getTickets().filter(t => t.id !== id)
-  Taro.setStorageSync(KEY, JSON.stringify(list))
+export async function deleteTicket(id: string): Promise<void> {
+  await apiRequest<void>({ url: `/api/tickets/${encodeURIComponent(id)}`, method: 'DELETE' })
 }

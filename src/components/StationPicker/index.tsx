@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { View, Button, Picker } from '@tarojs/components'
-import { apiRequest } from '../../services/api'
+import { apiRequest } from '../../services/request'
 
 interface Props {
   trainCode: string

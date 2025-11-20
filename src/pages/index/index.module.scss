@@ -1,0 +1,7 @@
+.index { padding: 16px }
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px }
+.title { font-size: 18px; font-weight: 700; color: #0b2b53 }
+.add-btn { width: 36px; height: 36px; border-radius: 18px; background: linear-gradient(180deg, #4ea3ff 0%, #3b82f6 100%); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(62,127,255,0.3) }
+.list { display: flex; flex-direction: column; gap: 12px }
+.item { border-radius: 12px; overflow: hidden }
+.empty { padding: 24px; color: #888 }
