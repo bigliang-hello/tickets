@@ -3,6 +3,8 @@ import { View, Button, Input, Textarea } from '@tarojs/components'
 import Taro, { useRouter } from '@tarojs/taro'
 import { Ticket } from '../../types/ticket'
 import { saveTicket, getTickets } from '../../services/storage'
+import { wechatLogin } from '../../services/auth'
+import { apiRequest } from '../../services/api'
 import SMSParserInput from '../../components/SMSParserInput'
 import ImageOCRUploader from '../../components/ImageOCRUploader'
 import StationPicker from '../../components/StationPicker'
@@ -48,9 +50,13 @@ export default function Add() {
       createdAt: form.createdAt || now,
       updatedAt: now
     }
-    saveTicket(ticket)
-    Taro.showToast({ title: '已保存', icon: 'success' })
-    Taro.navigateBack()
+    apiRequest<Ticket>({ url: '/api/tickets', method: 'POST', data: ticket }).then(created => {
+      saveTicket(created)
+      Taro.showToast({ title: '已保存', icon: 'success' })
+      Taro.navigateBack()
+    }).catch(() => {
+      Taro.showToast({ title: '保存失败', icon: 'none' })
+    })
   }
 
   return (
@@ -59,6 +65,9 @@ export default function Add() {
         <Button size='mini' onClick={() => setTab('sms')}>短信识别</Button>
         <Button size='mini' onClick={() => setTab('ocr')}>截图识别</Button>
         <Button size='mini' onClick={() => setTab('manual')}>手动填写</Button>
+      </View>
+      <View style={{ marginBottom: 12 }}>
+        <Button onClick={() => wechatLogin()}>微信登录</Button>
       </View>
       {tab === 'sms' && (
         <View style={{ marginBottom: 12 }}>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { View, Button, Picker } from '@tarojs/components'
-import { getRouteStations } from '../../services/train'
+import { apiRequest } from '../../services/api'
 
 interface Props {
   trainCode: string
@@ -15,12 +15,13 @@ export default function StationPicker({ trainCode, departDate, onSelect }: Props
 
   useEffect(() => {
     if (!trainCode || !departDate) return
-    getRouteStations(trainCode, departDate).then(list => {
+    apiRequest<{ stations: { name: string, arriveTime?: string }[] }>({ url: `/api/train/${encodeURIComponent(trainCode)}/stations`, method: 'GET', data: { date: departDate } }).then(resp => {
+      const list = resp.stations || []
       setStations(list.map(x => x.name))
       const m: Record<string, string> = {}
       list.forEach(x => { if (x.arriveTime) m[x.name] = x.arriveTime })
       setArriveTimes(m)
-    })
+    }).catch(() => {})
   }, [trainCode, departDate])
 
   return (

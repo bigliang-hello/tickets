@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { View, Button, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { ocrGeneralBase64 } from '../../services/ocr'
+import { apiUpload } from '../../services/api'
 
 interface Props { onParsed: (data: any, raw: string[]) => void }
 
@@ -18,10 +18,9 @@ export default function ImageOCRUploader({ onParsed }: Props) {
   const recognize = async () => {
     if (!img) return
     setLoading(true)
-    const fs = Taro.getFileSystemManager()
-    const base64 = fs.readFileSync(img, 'base64')
     try {
-      const lines = await ocrGeneralBase64(base64)
+      const resp = await apiUpload<{ lines: string[] }>('/api/ocr', img, 'file')
+      const lines = resp.lines || []
       const joined = lines.join(' ')
       onParsed({ rawText: joined, sourceType: 'OCR' }, lines)
     } catch (e: any) {
