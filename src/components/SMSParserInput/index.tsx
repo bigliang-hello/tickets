@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { View, Textarea, Button } from '@tarojs/components'
-import { parseSMS } from '../../utils/parser'
+import { parseSMSWithUrl } from '../../utils/parser'
 
 interface Props { onParsed: (data: any) => void }
 
 export default function SMSParserInput({ onParsed }: Props) {
   const [text, setText] = useState('')
-  const submit = () => {
-    const data = parseSMS(text)
+  const submit = async () => {
+    const data = await parseSMSWithUrl(text)
     onParsed(data)
   }
   return (

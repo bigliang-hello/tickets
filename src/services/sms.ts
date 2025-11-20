@@ -27,6 +27,7 @@ function parsePage(html: string): Partial<Ticket> {
 
 export async function parseSMSPreferUrl(text: string): Promise<Partial<Ticket>> {
   const url = extractUrl(text)
+  console.log('url:', url)
   if (!url) return parseSMS(text)
   try {
     const res = await Taro.request({ url, method: 'GET' })
