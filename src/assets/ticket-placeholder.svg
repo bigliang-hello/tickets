@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f6f2"/>
+      <stop offset="1" stop-color="#efece7"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="300" rx="18" fill="url(#g)" stroke="#d8d5cf"/>
+  <path d="M40 60 H760" stroke="#d0cdc6" stroke-width="2" stroke-dasharray="6 6"/>
+  <path d="M40 120 H760" stroke="#d0cdc6" stroke-width="2" stroke-dasharray="6 6"/>
+  <path d="M40 180 H760" stroke="#d0cdc6" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="40" y="40" font-size="20" fill="#8a877f">电子车票</text>
+  <text x="740" y="40" font-size="14" text-anchor="end" fill="#a19e96">Hand-drawn style</text>
+</svg>
