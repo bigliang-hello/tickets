@@ -1,4 +1,27 @@
-.sms-card { }
-.sms-title { font-size: 14px; font-weight: 600; color: #0b2b53; margin-bottom: 8px }
-.sms-input { border-radius: 12px; background: #f5f7fb; padding: 10px; min-height: 80px; margin-bottom: 10px }
-.sms-primary { background: #2563eb; color: #fff; border-radius: 12px }
+.sms-title { font-size: 30px; font-weight: 500; color: #0b2b53; margin-bottom: 24px }
+.sms-input-box {
+  background-color: #f8f8f8;
+  border-radius: 18px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.sms-input {
+  background-color: transparent;
+  width: 100%;
+  min-height: 180px;
+  font-size: 26px;
+  color: #0b2b53;
+  :global .taro-textarea {
+    background-color: #f8f8f8;
+    height: 180px;
+  }
+}
+.sms-primary {
+  background: linear-gradient(135deg, #3da0ff 0%, #2563eb 100%);
+  color: #fff;
+  border-radius: 16px;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(61, 160, 255, 0.35);
+}

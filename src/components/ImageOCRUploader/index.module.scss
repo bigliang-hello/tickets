@@ -1,9 +1,40 @@
-.ocr-uploader { }
-.upload-box { background: #fff; border-radius: 16px; padding: 16px; box-shadow: 0 6px 16px rgba(78, 137, 255, 0.12); }
-.placeholder { border: 2px dashed #d9dde5; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 8px }
-.upload-icon { width: 48px; height: 48px; border-radius: 24px; background: #e6f0ff; display: flex; align-items: center; justify-content: center; color: #3b82f6 }
-.icon-text { font-size: 18px }
-.upload-desc { font-size: 14px; color: #0b2b53; font-weight: 600 }
+.ocr-uploader { display: flex; flex-direction: column; gap: 14px }
+.upload-box {
+  padding: 0;
+  background: transparent;
+  border-radius: 24px;
+}
+.placeholder {
+  border: 2px dashed rgba(61, 152, 255, 0.4);
+  border-radius: 24px;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #f8fbff 0%, #f2f7ff 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.upload-icon {
+  width: 86px;
+  height: 86px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #e4efff 0%, #d9edff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f6bff;
+  font-size: 32px;
+  box-shadow: inset 0 0 0 1px rgba(88, 132, 255, 0.1);
+}
+.icon-text { font-size: 32px }
+.upload-desc { font-size: 16px; color: #0b2b53; font-weight: 600 }
 .upload-tip { font-size: 12px; color: #8aa1b8 }
-.preview { width: 100%; border-radius: 12px }
-.ocr-primary { margin-top: 12px; background: #2563eb; color: #fff; border-radius: 12px }
+.preview { width: 100%; border-radius: 22px }
+.ocr-primary {
+  margin-top: 4px;
+  background: linear-gradient(135deg, #3da0ff 0%, #2563eb 100%);
+  color: #fff;
+  border-radius: 18px;
+  font-weight: 600;
+  box-shadow: 0 16px 36px rgba(61, 160, 255, 0.35);
+}

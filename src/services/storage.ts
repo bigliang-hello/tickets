@@ -2,8 +2,8 @@ import { Ticket } from '../types/ticket'
 import { apiRequest } from './request'
 
 export async function getTickets(): Promise<Ticket[]> {
-  const resp = await apiRequest<Ticket[]>({ url: '/api/tickets', method: 'GET' })
-  return resp
+  const resp: any = await apiRequest<any>({ url: '/api/tickets', method: 'GET' })
+  return Array.isArray(resp) ? (resp as Ticket[]) : []
 }
 
 export async function getTicketById(id: string): Promise<Ticket | null> {

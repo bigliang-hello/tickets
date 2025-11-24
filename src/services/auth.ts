@@ -40,8 +40,9 @@ export async function ensureLogin(): Promise<boolean> {
 }
 
 export async function guardNavigate(url: string) {
-  const ok = await ensureLogin()
-  if (ok) Taro.navigateTo({ url })
+  // const ok = await ensureLogin()
+  // if (ok) Taro.navigateTo({ url })
+  Taro.navigateTo({ url })
 }
 
 export async function guardAction(action: () => void | Promise<void>) {

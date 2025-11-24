@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 
 const TOKEN_KEY = 'auth:token'
 const USER_KEY = 'auth:user'
-const API_BASE = 'https://your-app.vercel.app'
+const API_BASE = 'https://api.ttickets.top'
 
 export function getToken(): string { return Taro.getStorageSync(TOKEN_KEY) || '' }
 export function setToken(t: string) { Taro.setStorageSync(TOKEN_KEY, t) }

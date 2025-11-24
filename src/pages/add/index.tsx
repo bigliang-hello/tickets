@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { View, Button, Input, Textarea } from '@tarojs/components'
+import { View, Button, Input, Textarea, Text } from '@tarojs/components'
 import Taro, { useRouter } from '@tarojs/taro'
 import { Ticket } from '../../types/ticket'
 import { getTicketById } from '../../services/storage'
@@ -16,7 +16,7 @@ function uuid() {
 
 export default function Add() {
   const { params } = useRouter()
-  const [tab, setTab] = useState<'sms'|'ocr'|'manual'>('sms')
+  const [tab, setTab] = useState<'manual'|'ocr'>('manual')
   const [form, setForm] = useState<Partial<Ticket>>({ departDate: '' })
 
   useEffect(() => {
@@ -61,19 +61,27 @@ export default function Add() {
     })
   }
 
+  const tabs = [
+    { key: 'manual', label: '手动输入', icon: '✍️' },
+    { key: 'ocr', label: '截图识别', icon: '🖼️' }
+  ] as const
+
   return (
     <View className={styles['add-page']}>
-      <View className={styles.tabs}>
-        <View className={`${styles.tab} ${tab === 'sms' ? styles.active : ''}`} onClick={() => setTab('sms')}>短信识别</View>
-        <View className={`${styles.tab} ${tab === 'ocr' ? styles.active : ''}`} onClick={() => setTab('ocr')}>截图识别</View>
-        <View className={`${styles.tab} ${tab === 'manual' ? styles.active : ''}`} onClick={() => setTab('manual')}>手动输入</View>
+      <View className={styles.tabsContainer}>
+        {tabs.map(item => (
+          <View
+            key={item.key}
+            className={`${styles.tab} ${tab === item.key ? styles.active : ''}`}
+            onClick={() => setTab(item.key)}
+          >
+            <Text className={styles['tab-icon']}>{item.icon}</Text>
+            <Text>{item.label}</Text>
+          </View>
+        ))}
       </View>
-      <View className={styles['login-row']}>
-        <Button className={styles['login-btn']} onClick={() => wechatLogin()}>微信登录</Button>
-      </View>
-      {tab === 'sms' && (
+      {tab === 'manual' && (
         <View className={styles.card}>
-          <View className={styles['card-title']}>粘贴12306短信</View>
           <SMSParserInput onParsed={data => setForm({ ...form, ...data })} />
         </View>
       )}
@@ -95,9 +103,6 @@ export default function Add() {
           <View className={styles.label}>终点站</View>
           <View className={styles.inline}>
             <Input className={styles.input} value={form.toStationName || ''} onInput={e => setForm({ ...form, toStationName: e.detail.value })} placeholder='如：上海虹桥' />
-            <View className={styles['inline-btn']}>
-              <StationPicker trainCode={form.trainCode || ''} departDate={form.departDate || ''} onSelect={(name, arrive) => setForm({ ...form, toStationName: name, arriveTime: arrive })} />
-            </View>
           </View>
         </View>
         <View className={styles['grid-2']}>
@@ -129,10 +134,6 @@ export default function Add() {
             <View className={styles.label}>票价</View>
             <Input className={styles.input} type='number' value={typeof form.price === 'number' ? String(form.price) : ''} onInput={e => setForm({ ...form, price: Number(e.detail.value) })} placeholder='如：553.5' />
           </View>
-        </View>
-        <View className={styles['form-row']}>
-          <View className={styles.label}>识别文本</View>
-          <Textarea className={styles.textarea} value={form.rawText || ''} onInput={e => setForm({ ...form, rawText: e.detail.value })} placeholder='原始短信/识别文本' />
         </View>
       </View>
       <Button className={styles.primary} onClick={submit}>保存</Button>
