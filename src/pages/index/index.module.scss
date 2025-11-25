@@ -55,3 +55,35 @@
   font-size: 14px;
   padding: 40px 12px;
 }
+
+.bell-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #40a5ff 0%, #1c7dff 100%);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(64, 165, 255, 0.35);
+}
+
+.fab {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #34d1ff 0%, #1c7dff 60%);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 36px rgba(52, 154, 255, 0.35);
+  z-index: 999;
+}

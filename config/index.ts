@@ -21,6 +21,7 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
       "@tarojs/plugin-generator"
     ],
     defineConstants: {
+      'process.env.REMINDER_TMPL_ID': '"FnGmX4vt1dzaPdo1lFdzt1bCLo90i3Bus0yTq30-Te4"'
     },
     copy: {
       patterns: [

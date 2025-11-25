@@ -26,6 +26,10 @@ export default function Index () {
     await guardNavigate('/pages/add/index')
   }
 
+  const handleBellClick = async () => {
+    await guardNavigate('/pages/reminders/index')
+  }
+
   return (
     <View className={styles.index}>
       <View className={styles.hero}>
@@ -38,14 +42,14 @@ export default function Index () {
             <Text className={styles.subtitle}>用心记录每一次旅程</Text>
           </View>
         </View>
-        <View className={styles['add-btn']} onClick={handleAddClick}>
-          <Text>+</Text>
+        <View className={styles['bell-btn']} onClick={handleBellClick}>
+          <Text>🔔</Text>
         </View>
       </View>
       <View className={styles['list-wrapper']}>
         {tickets.length === 0 ? (
           <View className={styles.empty}>
-            <Text>暂无收藏，点击右上角「+」添加车票</Text>
+            <Text>暂无收藏，点击右下角「+」添加车票</Text>
           </View>
         ) : (
           <View className={styles.list}>
@@ -60,6 +64,9 @@ export default function Index () {
             ))}
           </View>
         )}
+      </View>
+      <View className={styles.fab} onClick={handleAddClick}>
+        <Text>+</Text>
       </View>
     </View>
   )
