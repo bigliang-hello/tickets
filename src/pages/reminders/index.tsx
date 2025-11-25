@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { View, Text } from '@tarojs/components'
 import Taro, { useDidShow } from '@tarojs/taro'
-import styles from './index.module.scss'
+import './index.module.scss'
 import { getReminders, deleteReminder } from '../../services/reminder'
 import { guardNavigate } from '../../services/auth'
 import type { Reminder } from '../../types/reminder'
@@ -27,30 +27,30 @@ export default function RemindersIndex() {
   }
 
   return (
-    <View className={styles.page}>
-      <View className={styles.hero}>
-        <Text className={styles.title}>买票提醒</Text>
+    <View className='page'>
+      <View className='hero'>
+        <Text className='title'>买票提醒</Text>
       </View>
-      <View className={styles.listWrapper}>
+      <View className='listWrapper'>
         {list.length === 0 ? (
-          <View className={styles.empty}><Text>暂无提醒，点击右下角「+」新建</Text></View>
+          <View className='empty'><Text>暂无提醒，点击右下角「+」新建</Text></View>
         ) : (
-          <View className={styles.list}>
+          <View className='list'>
             {list.map(item => (
-              <View key={item.id} className={styles.item} onClick={() => Taro.navigateTo({ url: `/pages/reminders/new?id=${item.id}` })}>
-                <View className={styles.card}>
-                  <View className={styles.row}>
-                    <View className={styles.left}>
-                      <View className={styles.icon}><Text>{item.icon || '📘'}</Text></View>
+              <View key={item.id} className='item' onClick={() => Taro.navigateTo({ url: `/pages/reminders/new?id=${item.id}` })}>
+                <View className='card'>
+                  <View className='row'>
+                    <View className='left'>
+                      <View className='icon'><Text>{item.icon || '📘'}</Text></View>
                       <View>
-                        <Text className={styles.itemTitle}>{item.title}</Text>
-                        {!!item.description && (<Text className={styles.itemDesc}>{item.description}</Text>)}
+                        <Text className='itemTitle'>{item.title}</Text>
+                        {!!item.description && (<Text className='itemDesc'>{item.description}</Text>)}
                       </View>
                     </View>
-                    <View className={styles.badge}><Text>{item.remindTime}</Text></View>
+                    <View className='badge'><Text>{item.remindTime}</Text></View>
                   </View>
-                  <View className={styles.ops}>
-                    <View className={styles.btn} onClick={(e) => { e.stopPropagation(); remove(item.id) }}><Text>删除</Text></View>
+                  <View className='ops'>
+                    <View className='btn' onClick={(e) => { e.stopPropagation(); remove(item.id) }}><Text>删除</Text></View>
                   </View>
                 </View>
               </View>
@@ -58,8 +58,7 @@ export default function RemindersIndex() {
           </View>
         )}
       </View>
-      <View className={styles.fab} onClick={toNew}><Text>+</Text></View>
+      <View className='fab' onClick={toNew}><Text>+</Text></View>
     </View>
   )
 }
-

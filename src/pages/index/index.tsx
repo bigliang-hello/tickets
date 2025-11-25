@@ -1,6 +1,6 @@
 import { View, Text } from '@tarojs/components'
 import Taro, { useLoad, useDidShow } from '@tarojs/taro'
-import styles from './index.module.scss'
+import './index.module.scss'
 import { getTickets } from '../../services/storage'
 import { useEffect, useState } from 'react'
 import TicketCard from '../../components/TicketCard'
@@ -31,32 +31,32 @@ export default function Index () {
   }
 
   return (
-    <View className={styles.index}>
-      <View className={styles.hero}>
-        <View className={styles['hero-left']}>
-          <View className={styles['hero-icon']}>
-            <Text className={styles['hero-icon-text']}>🚆</Text>
+    <View className='index'>
+      <View className='hero'>
+        <View className='hero-left'>
+          <View className='hero-icon'>
+            <Text className='hero-icon-text'>🚆</Text>
           </View>
           <View>
-            <Text className={styles.title}>我的车票收藏</Text>
-            <Text className={styles.subtitle}>用心记录每一次旅程</Text>
+            <Text className='title'>我的车票收藏</Text>
+            <Text className='subtitle'>用心记录每一次旅程</Text>
           </View>
         </View>
-        <View className={styles['bell-btn']} onClick={handleBellClick}>
+        <View className='bell-btn' onClick={handleBellClick}>
           <Text>🔔</Text>
         </View>
       </View>
-      <View className={styles['list-wrapper']}>
+      <View className='list-wrapper'>
         {tickets.length === 0 ? (
-          <View className={styles.empty}>
+          <View className='empty'>
             <Text>暂无收藏，点击右下角「+」添加车票</Text>
           </View>
         ) : (
-          <View className={styles.list}>
+          <View className='list'>
             {tickets.map(t => (
               <View
                 key={t.id}
-                className={styles.item}
+                className='item'
                 onClick={() => Taro.navigateTo({ url: `/pages/detail/index?id=${t.id}` })}
               >
                 <TicketCard ticket={t} />
@@ -65,7 +65,7 @@ export default function Index () {
           </View>
         )}
       </View>
-      <View className={styles.fab} onClick={handleAddClick}>
+      <View className='fab' onClick={handleAddClick}>
         <Text>+</Text>
       </View>
     </View>

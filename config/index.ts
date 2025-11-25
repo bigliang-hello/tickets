@@ -32,7 +32,6 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
     framework: 'react',
     compiler: 'vite',
     mini: {
-      commonChunks: [],
       postcss: {
         pxtransform: {
           enable: true,
@@ -41,7 +40,7 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
           }
         },
         cssModules: {
-          enable: true,
+          enable: false,
           config: {
             namingPattern: 'module',
             generateScopedName: '[name]__[local]___[hash:base64:5]'
@@ -64,10 +63,9 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
           config: {}
         },
         cssModules: {
-          enable: true,
+          enable: false,
           config: {
-            namingPattern: 'module',
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
+            namingPattern: 'global'
           }
         }
       },
