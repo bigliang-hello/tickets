@@ -1,6 +1,7 @@
 import { View, Text } from '@tarojs/components'
 import Taro, { useLoad, useDidShow } from '@tarojs/taro'
 import './index.module.scss'
+import '../../components/TicketCard/index.module.scss'
 import { getTickets } from '../../services/storage'
 import { useEffect, useState } from 'react'
 import TicketCard from '../../components/TicketCard'
@@ -37,7 +38,7 @@ export default function Index () {
           <View className='hero-icon'>
             <Text className='hero-icon-text'>🚆</Text>
           </View>
-          <View>
+          <View className='hero-text'>
             <Text className='title'>我的车票收藏</Text>
             <Text className='subtitle'>用心记录每一次旅程</Text>
           </View>
@@ -49,7 +50,7 @@ export default function Index () {
       <View className='list-wrapper'>
         {tickets.length === 0 ? (
           <View className='empty'>
-            <Text>暂无收藏，点击右下角「+」添加车票</Text>
+            <Text>暂无车票，点击右下角「+」添加车票</Text>
           </View>
         ) : (
           <View className='list'>
