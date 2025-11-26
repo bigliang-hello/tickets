@@ -1,7 +1,6 @@
 import { View, Text } from '@tarojs/components'
 import Taro, { useLoad, useDidShow } from '@tarojs/taro'
 import './index.module.scss'
-import '../../components/TicketCard/index.module.scss'
 import { getTickets } from '../../services/storage'
 import { useEffect, useState } from 'react'
 import TicketCard from '../../components/TicketCard'

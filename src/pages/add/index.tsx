@@ -3,16 +3,10 @@ import { View, Button, Input, Textarea, Text, Picker } from '@tarojs/components'
 import Taro, { useRouter } from '@tarojs/taro'
 import { Ticket } from '../../types/ticket'
 import { getTicketById } from '../../services/storage'
-import { wechatLogin } from '../../services/auth'
 import { apiRequest } from '../../services/request'
 import SMSParserInput from '../../components/SMSParserInput'
 import ImageOCRUploader from '../../components/ImageOCRUploader'
-import StationPicker from '../../components/StationPicker'
 import './index.module.scss'
-
-function uuid() {
-  return Math.random().toString(36).slice(2) + Date.now().toString(36)
-}
 
 export default function Add() {
   const { params } = useRouter()

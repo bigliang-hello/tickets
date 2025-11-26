@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { View, Button } from '@tarojs/components'
+import { View, Button, Text } from '@tarojs/components'
 import Taro, { useRouter } from '@tarojs/taro'
 import { getTicketById, deleteTicket } from '../../services/storage'
-import TicketCard from '../../components/TicketCard'
+// import TicketCard from '../../components/TicketCard'
 import { Ticket } from '../../types/ticket'
 
 export default function Detail() {
@@ -25,7 +25,12 @@ export default function Detail() {
 
   return (
     <View style={{ padding: 16 }}>
-      {ticket && <TicketCard ticket={ticket} />}
+      {ticket && (
+        <View className='ticket-card'>
+          <Text>标题：{ticket.gate}</Text>
+          <Text>内容：{ticket.notes}</Text>
+        </View>
+      )}
       <View style={{ marginTop: 16 }}>
         <Button onClick={() => Taro.navigateTo({ url: `/pages/add/index?id=${ticket?.id}` })}>编辑</Button>
         <Button onClick={remove}>删除</Button>
