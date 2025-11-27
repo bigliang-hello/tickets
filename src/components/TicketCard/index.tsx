@@ -11,38 +11,31 @@ export default function TicketCard({ ticket, onDelete }: Props) {
         <View className='row top'>
           <View className='train-pill'>
             <View className='train-icon'>
-              <Text className='train-icon-text'>🚄</Text>
+              <View className='iconfont icon-huoche' style={{ fontSize: '16px', color: '#ffffff' }}></View>
             </View>
             <Text className='train-code'>{ticket.trainCode}</Text>
           </View>
           <View className='date-badge'>
             <Text className='date-text'>{ticket.departDate}</Text>
-            {onDelete && (
-              <View className='del' onClick={(e) => { e.stopPropagation(); onDelete(ticket.id) }}>
-                <Text>🗑️</Text>
-              </View>
-            )}
           </View>
         </View>
         <View className='row mid'>
           <View className='col'>
-            <Text className='label'>始发站</Text>
-            <Text className='station'>{ticket.fromStationName}</Text>
+            <View className='label'>始发站</View>
+            <View className='station'>{ticket.fromStationName}</View>
+            <View className='time'>{ticket.departTime || '-'}</View>
           </View>
           <View className='arrow'>
-            <Text className='arrow-text'>→</Text>
+            <View className='iconfont icon-jiantou arrow-text'></View>
           </View>
           <View className='col right'>
-            <Text className='label'>终点站</Text>
-            <Text className='station'>{ticket.toStationName}</Text>
+            <View className='label'>终点站</View>
+            <View className='station'>{ticket.toStationName}</View>
+            <View className='time'>{ticket.arriveTime || '-'}</View>
           </View>
         </View>
         <View className='info'>
           <View className='info-grid'>
-            <View className='info-item'>
-              <Text className='info-label'>到达时间</Text>
-              <Text className='info-value'>{ticket.arriveTime || '-'}</Text>
-            </View>
             <View className='info-item'>
               <Text className='info-label'>座位号</Text>
               <Text className='info-value'>{ticket.seatCar && ticket.seatNo ? `${ticket.seatCar}车${ticket.seatNo}` : '-'}</Text>
@@ -51,10 +44,11 @@ export default function TicketCard({ ticket, onDelete }: Props) {
               <Text className='info-label'>检票口</Text>
               <Text className='info-value'>{ticket.gate || '-'}</Text>
             </View>
+             <View className='info-item'>
+              <Text className='info-label'>价格</Text>
+              <Text className='info-value price'>¥{ticket.price}</Text>
+            </View>
           </View>
-          {typeof ticket.price === 'number' && (
-            <Text className='price'>¥{ticket.price.toFixed(2)}</Text>
-          )}
         </View>
       </View>
     </View>

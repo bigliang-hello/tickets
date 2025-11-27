@@ -1,37 +1,8 @@
 .index {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 24px 20px 32px;
-  background: linear-gradient(180deg, #f0f8ff 0%, #e6f3ff 40%, #e9f7ff 100%);
+  padding: 24px 32px;
 
-  .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 24px;
-    padding: 18px 20px;
-    box-shadow: 0 18px 50px rgba(86, 147, 255, 0.18);
-  }
-  .hero-left { display: flex; align-items: center; gap: 12px }
-  .hero-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 14px;
-    background: linear-gradient(180deg, #40a5ff 0%, #1c7dff 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 20px rgba(64, 165, 255, 0.35);
-  }
-  .hero-icon-text { font-size: 22px }
-  .hero-text {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .title { font-size: 32px; font-weight: 700; color: #0c254f; margin-right: 10px; }
-  .subtitle { font-size: 20px; color: #6d88a9 }
   .add-btn {
     width: 46px;
     height: 46px;
@@ -46,11 +17,7 @@
     box-shadow: 0 12px 30px rgba(52, 154, 255, 0.35);
   }
   .list-wrapper {
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 28px;
-    padding: 24px 18px 30px;
-    box-shadow: 0 20px 60px rgba(52, 126, 255, 0.12);
+
   }
   .list { display: flex; flex-direction: column; gap: 18px }
   .item { border-radius: 20px; overflow: hidden }
@@ -58,7 +25,7 @@
     text-align: center;
     color: #8598b3;
     font-size: 28px;
-    padding: 40px 12px;
+    padding: 24px 32px;
   }
 
   .bell-btn {

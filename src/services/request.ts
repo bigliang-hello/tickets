@@ -20,7 +20,7 @@ function withBase(url: string) {
 let refreshing: Promise<void> | null = null
 async function refreshLoginInternal() {
   const { code } = await Taro.login()
-  const res = await Taro.request({ url: withBase('/api/auth/wechat/login'), method: 'POST', data: { code }, header: { 'Content-Type': 'application/json' } })
+  const res = await Taro.request({ url: withBase('/api/auth/wechat/login'), method: 'POST', data: { code }, header: { 'Content-Type': 'application/json' }, timeout: 10000 })
   const data = res.data as any
   if (res.statusCode >= 400 || !data?.token) throw new Error('login failed')
   setToken(data.token)
@@ -36,13 +36,13 @@ export async function apiRequest<T>(opts: { url: string, method?: 'GET'|'POST'|'
   const token = getToken()
   const headers = { ...(opts.headers || {}), 'Content-Type': 'application/json' } as any
   if (token) headers['Authorization'] = `Bearer ${token}`
-  const res = await Taro.request({ url: withBase(opts.url), method: opts.method || 'GET', data: opts.data, header: headers })
+  const res = await Taro.request({ url: withBase(opts.url), method: opts.method || 'GET', data: opts.data, header: headers, timeout: 10000 })
   if (res.statusCode === 401 || res.statusCode === 403) {
     await ensureAuth()
     const retryHeaders = { ...(opts.headers || {}), 'Content-Type': 'application/json' } as any
     const t2 = getToken()
     if (t2) retryHeaders['Authorization'] = `Bearer ${t2}`
-    const retry = await Taro.request({ url: withBase(opts.url), method: opts.method || 'GET', data: opts.data, header: retryHeaders })
+    const retry = await Taro.request({ url: withBase(opts.url), method: opts.method || 'GET', data: opts.data, header: retryHeaders, timeout: 10000 })
     if (retry.statusCode >= 400) throw new Error(String(retry.statusCode))
     return retry.data as T
   }

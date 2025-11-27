@@ -35,9 +35,23 @@ function toTicket(x: any): Ticket {
 }
 
 export async function getTickets(): Promise<Ticket[]> {
-  const resp: any = await apiRequest<any>({ url: '/api/tickets', method: 'GET' })
-  const list: any[] = Array.isArray(resp) ? resp : (Array.isArray(resp?.data) ? resp.data : (Array.isArray(resp?.items) ? resp.items : []))
-  return list.map(toTicket)
+  try {
+    const resp: any = await apiRequest<any>({ url: '/api/tickets', method: 'GET' })
+    const list: any[] = Array.isArray(resp) ? resp : (Array.isArray(resp?.data) ? resp.data : (Array.isArray(resp?.items) ? resp.items : []))
+    return list.map(toTicket)
+  } catch {
+    return []
+  }
+}
+
+export async function getTicketsPaged(page: number, pageSize: number): Promise<Ticket[]> {
+  try {
+    const resp: any = await apiRequest<any>({ url: '/api/tickets', method: 'GET', data: { page, pageSize } })
+    const list: any[] = Array.isArray(resp) ? resp : (Array.isArray(resp?.data) ? resp.data : (Array.isArray(resp?.items) ? resp.items : []))
+    return list.map(toTicket)
+  } catch {
+    return []
+  }
 }
 
 export async function getTicketById(id: string): Promise<Ticket | null> {

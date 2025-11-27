@@ -25,6 +25,9 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
     },
     copy: {
       patterns: [
+        { from: 'src/assets/icon/iconfont.ttf', to: 'iconfont.ttf' },
+        { from: 'src/assets/icon/iconfont.woff', to: 'iconfont.woff' },
+        { from: 'src/assets/icon/iconfont.woff2', to: 'iconfont.woff2' }
       ],
       options: {
       }
